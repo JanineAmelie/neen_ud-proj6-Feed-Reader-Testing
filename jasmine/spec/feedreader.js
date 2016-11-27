@@ -56,10 +56,16 @@ $(function() {
          */
         it('menu changes visibility when the menu icon is clicked', function() {
 
+            //The menu is hidden when the body has a class called '.menu-hidden' and shows itself when the menu-hidden class is not attached to the body.
+
+            //clicks the menu icon
             $('.menu-icon-link').click();
+            //checks if the sliding menu is visible
             expect($("body").hasClass("menu-hidden")).toBe(false);
 
+            //click the menu icon again
             $('.menu-icon-link').click();
+            //checks if the sliding menu is hidden.
             expect($("body").hasClass("menu-hidden")).toBe(true);
 
         })
