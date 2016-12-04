@@ -16,7 +16,7 @@ $(function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url).toBeTruthy();
-            };
+            }
 
         });
 
@@ -30,7 +30,7 @@ $(function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name).toBeTruthy();
-            };
+            }
 
         });
 
@@ -68,7 +68,7 @@ $(function() {
             //checks if the sliding menu is hidden.
             expect($("body").hasClass("menu-hidden")).toBe(true);
 
-        })
+        });
 
     });
 
@@ -78,9 +78,7 @@ $(function() {
         //done() signals framework it can start testing.
         // loadfeed will be called, and only when it's 'done', can the it() tests occur.
         beforeEach(function(done) {
-            loadFeed(0, function() {
-                done();
-            });
+            loadFeed(0, done);
         });
 
         /* Write a test that ensures when the loadFeed
@@ -91,7 +89,7 @@ $(function() {
          */
 
         it('when loadFeed() has completed work: there is a single .entry-link element within .feed container', function() {
-            var numOfElemInFC = $('.feed').children().length;
+            var numOfElemInFC = $('.feed .entry').length;
 
             expect(numOfElemInFC).toBeGreaterThan(1);
         });
@@ -106,9 +104,16 @@ $(function() {
 
         beforeEach(function(done) {
             loadFeed(0, function() {
-                done();
+                originalFeed = $(".header-title").html();
+
+                //load a new feed in the previous feed's callback
+                //when the previous feed is finished
+
+                loadFeed(1, function() {
+                    newFeed = $(".header-title").html();
+                    done();
+                });
             });
-            originalFeed = $(".header-title").html();
         });
 
         /* Write a test that ensures when a new feed is loaded
@@ -117,10 +122,6 @@ $(function() {
          */
 
         it('when new feed is loaded, content changes', function() {
-            $("a[data-id='1']").trigger("click");
-            setTimeout(function() {
-                newFeed = $(".header-title").html();
-            }, 500);
 
             expect(newFeed).not.toBe(originalFeed);
 
