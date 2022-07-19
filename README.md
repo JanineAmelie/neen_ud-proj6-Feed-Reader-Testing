@@ -2,14 +2,14 @@
 Feed Reader Testing
 ---
 
-###Project Overview
+### Project Overview
 An Existing web app that reads RSS feeds was provided for me by [Udacity.](http://udacity.com/) I was responsible of writing a  test suite to check various functionality of the Feed Reader App.
 
 ![UD project](https://www.dropbox.com/s/bwm7v0zins3gibl/2016-11-27%2001_57_15-UdaciFeeds.png?raw=1)
 
 ---
 
-###Project Information
+### Project Information
 
 -  [Jasmine Testing Framework](https://jasmine.github.io/) was used.
 - "Red - Green - Refactor" Test Driven Development method was used to write the tests.
